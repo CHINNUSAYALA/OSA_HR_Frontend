@@ -2,28 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Input from "../components/Input";
 import EnhancedButton from "../components/EnhancedButton";
-import styled from "styled-components";
 import {
   Checkbox,
   FormControl,
   FormControlLabel,
   FormHelperText,
 } from "@mui/material";
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-  width: 50%;
-  margin: auto;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  gap: 12px;
-  justify-content: right;
-  margin-top: 10px;
-`;
+import { ButtonWrapper, Form } from "./styled.components";
 
 const Signup = () => {
   const {

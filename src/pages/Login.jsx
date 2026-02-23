@@ -2,16 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Input from "../components/Input";
 import EnhancedButton from "../components/EnhancedButton";
-import styled from "styled-components";
+import { Form } from "./styled.components";
 
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    width: 50%;
-    margin: auto;
-    justify-content:center;
-`;
 
 const Login = () => {
   const {
