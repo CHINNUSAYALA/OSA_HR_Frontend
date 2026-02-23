@@ -9,7 +9,7 @@ function TabPanel({ children, value, index }) {
   return (
     <div hidden={value !== index}>
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ pt: 3, pb: 3 }}>
           {children}
         </Box>
       )}
