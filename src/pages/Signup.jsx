@@ -18,11 +18,19 @@ const Form = styled.form`
   margin: auto;
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+  justify-content: right;
+  margin-top: 10px;
+`;
+
 const Signup = () => {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -30,6 +38,10 @@ const Signup = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const handleReset = () => {
+    reset();
   };
 
   return (
@@ -104,9 +116,20 @@ const Signup = () => {
         helperText={errors?.password?.message}
         {...register("password", {
           required: "Password is required",
-          minLength: {
-            value: 8,
-            message: "Minimum 8 characters required",
+          validate: {
+            minLength: (value) =>
+              value.length >= 8 || "Minimum 8 characters required",
+            hasUpperCase: (value) =>
+              /[A-Z]/.test(value) ||
+              "Must contain at least one uppercase letter",
+            hasLowerCase: (value) =>
+              /[a-z]/.test(value) ||
+              "Must contain at least one lowercase letter",
+            hasNumber: (value) =>
+              /[0-9]/.test(value) || "Must contain at least one number",
+            hasSpecialChar: (value) =>
+              /[!@#$%^&*(),.?":{}|<>]/.test(value) ||
+              "Must contain at least one special character",
           },
         })}
       />
@@ -139,7 +162,15 @@ const Signup = () => {
         <FormHelperText>{errors?.terms?.message}</FormHelperText>
       </FormControl>
 
-      <EnhancedButton type="submit" variant="contained" label="Sign Up" />
+      <ButtonWrapper>
+        <EnhancedButton
+          type="button"
+          variant="outlined"
+          label="Reset"
+          onClick={handleReset}
+        />
+        <EnhancedButton type="submit" variant="contained" label="Sign Up" />
+      </ButtonWrapper>
     </Form>
   );
 };
